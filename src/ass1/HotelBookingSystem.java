@@ -2,6 +2,7 @@ package ass1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HotelBookingSystem {
@@ -13,9 +14,10 @@ public class HotelBookingSystem {
 		  Scanner sc = null;
 	      try
 	      {
-	    	  String[] request;// 
+	    	  
 	          sc = new Scanner(new File("test.txt"));    // args[0] is the first command line argument
 	          while(sc.hasNextLine()){
+	        	  String[] request = null;//
 	        	  String input = sc.nextLine();
 	        	  if(input.contains("#")){
 	        		  String result = input.substring(0, input.indexOf("#"));
@@ -28,6 +30,9 @@ public class HotelBookingSystem {
 	        		 request =  (convert.parse(input));
 	        	  }
 	        	  
+	        	  if(request != null) {
+	        		  convert.command(request);
+	        	  }
 	        	  
 	        	  
 	          }
@@ -41,8 +46,11 @@ public class HotelBookingSystem {
 	          if (sc != null) sc.close();
 	      }
 		
-		
-		
+		System.out.println(Hotels.all.isEmpty());
+	  	for(Hotels loop : Hotels.all) {
+	  		System.out.println(loop.name);
+		}
 	}
-
 }
+
+
