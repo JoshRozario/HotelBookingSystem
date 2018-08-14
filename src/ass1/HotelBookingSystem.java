@@ -2,14 +2,15 @@ package ass1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+//import java.util.Date;
 import java.util.Scanner;
 
 public class HotelBookingSystem {
 	public static ArrayList<Hotels> hotelList = new ArrayList<Hotels>();
 	
-	public static void main(String args[]){
-		 
+	public static void main(String args[]) {
 		  Input convert = new Input();
 		  Scanner sc = null;
 	      try
