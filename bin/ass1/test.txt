@@ -2,7 +2,7 @@ Hotel Surfers 101 2      # Hotel Surfers has room 101 with capacity 2 ("double" 
 Hotel Surfers 102 2      # Hotel Surfers has room 102 with capacity 2 ("double" room)
 Hotel Surfers 103 1      # Hotel Surfers has room 103 with capacity 1 ("single" room)
 Hotel Burleigh 101 2     # Hotel Burleigh has room 101 with capacity 2 ("double" room)
-Booking Aarthi Jan 25 20 single 1 double 1
+Booking Aarthi Jan 25 4 single 1 double 1
           # Aarthi's booking request is for 1 single and 1 double room starting on Jan 25 for 2 nights
           # Assign rooms 101 and 103 of Hotel Surfers (output Booking Aarthi Surfers 101 103)
 Booking Rob Jan 24 4 double 1

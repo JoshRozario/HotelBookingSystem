@@ -32,7 +32,7 @@ public class HotelBookingSystem {
 	        	  }
 	        	  
 	        	  if(request != null) {
-	        		  convert.command(request);
+	        		  Input.command(request);
 	        	  }
 	        	  
 	        	  
@@ -47,10 +47,10 @@ public class HotelBookingSystem {
 	          if (sc != null) sc.close();
 	      }
 		
-		System.out.println(Hotels.all.isEmpty());
-	  	for(Hotels loop : Hotels.all) {
-	  		System.out.println(loop.name);
-		}
+		//System.out.println(Hotels.all.isEmpty());
+	  	//for(Hotels loop : Hotels.all) {
+	  	//	System.out.println(loop.name);
+		//}
 	}
 }
 
