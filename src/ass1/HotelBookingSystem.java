@@ -11,32 +11,11 @@ public class HotelBookingSystem {
 	public static ArrayList<Hotels> hotelList = new ArrayList<Hotels>();
 	
 	public static void main(String args[]) {
-		  Input convert = new Input();
 		  Scanner sc = null;
 	      try
 	      {
-	    	  
 	          sc = new Scanner(new File("test.txt"));    // args[0] is the first command line argument
-	          while(sc.hasNextLine()){
-	        	  String[] request = null;//
-	        	  String input = sc.nextLine();
-	        	  if(input.contains("#")){
-	        		  String result = input.substring(0, input.indexOf("#"));
-	        		  if (result.trim().isEmpty()){
-	        			  //do nothing
-	        		  }else{
-	        			 request = (convert.parse(result));
-	        		  }
-	        	  }else{
-	        		 request =  (convert.parse(input));
-	        	  }
-	        	  
-	        	  if(request != null) {
-	        		  Input.command(request);
-	        	  }
-	        	  
-	        	  
-	          }
+	          Function.process(sc);
 	      }
 	      catch (FileNotFoundException e)
 	      {
@@ -52,6 +31,8 @@ public class HotelBookingSystem {
 	  	//	System.out.println(loop.name);
 		//}
 	}
+
+	
 }
 
 
