@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HotelBookingSystem {
-	public static ArrayList<Hotels> hotelList = new ArrayList<Hotels>();
+	public static ArrayList<String> bookings = new ArrayList<String>();
 	
 	public static void main(String args[]) {
 		  Scanner sc = null;
@@ -26,12 +26,13 @@ public class HotelBookingSystem {
 	          if (sc != null) sc.close();
 	      }
 		
-		//System.out.println(Hotels.all.isEmpty());
-	  	//for(Hotels loop : Hotels.all) {
-	  	//	System.out.println(loop.name);
-		//}
+		/**System.out.println(Hotels.all.isEmpty());
+	  	for(Hotels loop : Hotels.all) {
+	  		System.out.println(loop.getFreeDouble());
+	  		
+		}
+		**/
 	}
-
 	
 }
 

@@ -18,7 +18,17 @@ public class Input {
 	static void command(String[] request){	//below are index numbers and respective meaning for each command
 		
 		if (request[0].equals("Booking")){					//0=command 1=bookingName 2-4=date 5-6=room booking
-			System.out.println(Function.book(request));		//7-8(optional) another room
+															//7-8(optional) another room
+			BookingInfo test = Function.book(request);
+			if (test.rooms.isEmpty()){
+				System.out.println("Booking rejected");
+				return;
+			}
+			System.out.printf("Booking %s %s ",test.name, test.hotel);
+			for (String number : test.rooms){
+				System.out.printf("%s ", number);
+			}
+			System.out.println("");
 			
 		} else if (request[0].equals("Hotel")){				//0=command 1=Hotel 2=roomNumb 3=capacity
 			Function.createHotel(request);
@@ -39,10 +49,9 @@ public class Input {
 			//Enter code
 		}
 		
+		
+		
 	}
 
-	
-
-	
 
 }
