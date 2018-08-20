@@ -1,0 +1,23 @@
+Hotel Wowington 200 2 #Hotel has room 200 of type double
+Hotel Wowington 300 3 #Hotel has room 300 of type triple
+Hotel Wowington 301 3 #Hotel has room 301 of type triple
+Hotel Wowington 302 3 # Hotel has room 302 of type triple
+Hotel Wowington 100 1 #Hotel has room 100 of type single
+Hotel Amazonia 100 1 #Hotel has room 100 of type single
+Hotel Amazonia 101 1 #Hotel has room 101 of type single
+Hotel Amazonia 102 1 #Hotel has room 102 of type single
+Hotel Amazonia 103 1 #Hotel has room 103 of type single
+Hotel Amazonia 104 1 #Hotel has room 104 of type single
+Booking Josh Jan 25 2 single 1 triple 1
+	#should assign 1 single and 1 triples in Wowington from jan 25 to jan 27
+Cancel Josh 
+	#should deassign josh's bookings from every room
+Booking Josh Jan 25 2 double 1 triple 1 
+	#rebook to check if cancel worked properly
+Cancel Dan 
+	#should be rejected since booking doesnt exist
+Change Dan Jan 27 3 single 1
+	# should be rejected since booking to change doesnt exist 
+Booking Dan Jan 24 3 single 1 #
+	#should book room in wowington
+Change Dan Jan 26 2 double 1

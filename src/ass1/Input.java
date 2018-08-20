@@ -25,6 +25,8 @@ public class Input {
 		
 		if (request[0].equals("Booking")){					//0=command 1=bookingName 2-4=date 5-6=room booking
 															//7-8(optional) another room
+			
+			
 			BookingInfo test = Function.book(request);
 			if (test.rooms.isEmpty()){
 				System.out.println("Booking rejected");
@@ -46,16 +48,26 @@ public class Input {
 			Function.removeBooking(request);
 			
 			BookingInfo attempt = Function.book(request);
-			if (attempt.rooms.isEmpty()){
-				System.out.println("Booking rejected");
-				return;
-			}
+			//if (attempt.rooms.isEmpty()){
+			//	System.out.println("Change rejected");
+			//	return;
+			//}
+			BookingInfo currB = HotelBookingSystem.bookings.get(request[1]);
+			//System.out.println("name" + currB.getName());
+			//if (currB == null){
+			//	System.out.println("Change rejected");
+			//	return;
+			//
+			
+			
+			
 			System.out.printf("Change %s %s",attempt.getName(), attempt.getHotel());
 			for (String number : attempt.rooms){
 				System.out.printf(" %s", number);
 			}
 			System.out.println("");
 			HotelBookingSystem.bookings.put(attempt.getName(), attempt);
+			Function.book(request);
 			
 				
 			 

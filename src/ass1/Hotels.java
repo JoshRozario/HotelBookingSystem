@@ -38,12 +38,14 @@ public class Hotels {
 	}
 
 	public void addFreeSingle(String number) {
+		
 		this.roomList.put(number, new Room(number,"1"));
 		this.freeSingle++;
 	}
 
 
 	public void addFreeDouble(String number) {
+		
 		this.roomList.put(number, new Room(number,"2"));
 		this.freeDouble++;
 	}
@@ -51,6 +53,7 @@ public class Hotels {
 
 
 	public void addFreeTriple(String number) {
+		
 		this.roomList.put(number, new Room(number,"3"));
 		this.freeTriple++;
 	}

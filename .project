@@ -20,5 +20,10 @@
 			<type>1</type>
 			<locationURI>PROJECT_LOC/test.txt</locationURI>
 		</link>
+		<link>
+			<name>src/ass1/test2.txt</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/test2.txt</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>

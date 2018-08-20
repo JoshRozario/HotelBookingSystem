@@ -17,7 +17,7 @@ public class HotelBookingSystem {
 		  Scanner sc = null;
 	      try
 	      {
-	          sc = new Scanner(new File("test.txt"));    // args[0] is the first command line argument
+	          sc = new Scanner(new File(args[0]));    // args[0] is the first command line argument
 	          Function.parser(sc);
 	      }
 	      catch (FileNotFoundException e)
@@ -28,7 +28,8 @@ public class HotelBookingSystem {
 	      {
 	          if (sc != null) sc.close();
 	      }
-		
+
+			
 		
 	}
 	

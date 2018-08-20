@@ -1,5 +1,0 @@
-String pattern = "MMM dd";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-
-		Date date = simpleDateFormat.parse(" 25");
-		System.out.println(simpleDateFormat.format(date));
