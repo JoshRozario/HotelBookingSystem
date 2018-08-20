@@ -8,10 +8,9 @@ import java.util.Map;
 
 public class Hotels {
 	public static Map<String,Hotels> all = new LinkedHashMap<String, Hotels>();
-    //public static Map<String,Booking> = new LinkedHashMap<String,Booking>()
 	
-	Map<String,Room> roomList = new LinkedHashMap<String,Room>();
-    String name;
+	public Map<String,Room> roomList = new LinkedHashMap<String,Room>();
+    private String name;
     private int freeSingle = 0;
     private int freeDouble = 0;
     private int freeTriple = 0;
@@ -19,6 +18,10 @@ public class Hotels {
     
 	public Hotels(String name) {
 		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public int getFreeRoom(String size) {

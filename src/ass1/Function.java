@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Function {
 
 	/** this function books rooms in a hotel under a bookingname
-	 * @param request
+	 * @param request has details which are needed to book
 	 * @return 
 	 */
 	static BookingInfo book(String[] request) {
@@ -33,7 +33,7 @@ public class Function {
 		room1Cap = room1Cap.replaceAll("triple","3" );
 		int room1Amt = Integer.parseInt(request[6]);
 		
-		String room2Cap = "1"; //placeholder
+		String room2Cap = "1"; 
 		int room2Amt = -99;
 		//System.out.println(room1Cap);
         if(request.length == 9){
@@ -46,7 +46,7 @@ public class Function {
         }
         for (Hotels freeH: Hotels.all.values()){			//ADD WAY TO ADD SECOND ROOM
         	if(freeH.getFreeRoom(room1Cap) >= room1Amt && ((freeH.getFreeRoom(room2Cap)-1) >= room2Amt ) ){
-        		BookingInfo info = new BookingInfo(request[1], freeH.name, bookStart, bookEnd);
+        		BookingInfo info = new BookingInfo(request[1], freeH.getName(), bookStart, bookEnd);
         		if(request.length == 9){
         			request[5] = request[7];
         			request[6] = request[8];
@@ -55,11 +55,11 @@ public class Function {
         			info = Function.book(request2);
         		}
         		for (Room freeR: freeH.roomList.values()){
-        			if(freeR.capacity.equals(room1Cap)){
+        			if(freeR.getCapacity().equals(room1Cap)){
         				if (freeR.Bookings.isEmpty()){
 	    					//System.out.println("Booking " + request[1] +" "+ freeH.name + " " + freeR.number);
 	    					freeR.Bookings.add(new Booking(request[1], bookStart, bookEnd));
-	    					info.rooms.add(freeR.number);
+	    					info.rooms.add(freeR.getNumber());
 	    					//info.dates = (new Booking(request[1], bookStart, bookEnd));
 	    					//add to list of bookings
 	    					return info;//maybe remove if second number is there
@@ -67,10 +67,10 @@ public class Function {
         			    boolean free = true;
 	        			for(Booking BookingC: freeR.Bookings){
 	        				//System.out.println(BookingC.bookS);
-	    					if (bookStart.isAfter(BookingC.bookS)&&bookStart.isBefore(BookingC.bookE)){
+	    					if (bookStart.isAfter(BookingC.getBookS())&&bookStart.isBefore(BookingC.getBookE())){
 	    						//System.out.println("Booking rejected");
 	    						free = false;
-	    					}if (bookEnd.isAfter(BookingC.bookS)&&bookStart.isBefore(BookingC.bookE)){
+	    					}if (bookEnd.isAfter(BookingC.getBookS())&&bookStart.isBefore(BookingC.getBookE())){
 	    						//System.out.println("Booking rejected");
 	    						free = false;
 	    					}
@@ -79,7 +79,7 @@ public class Function {
 	        			if (free == true){
     						//System.out.println("Booking " + request[1] +" "+ freeH.name + " " + freeR.number);
     						freeR.Bookings.add(new Booking(request[1], bookStart, bookEnd));
-    						info.rooms.add(freeR.number);
+    						info.rooms.add(freeR.getNumber());
     						//info.dates = (new Booking(request[1], bookStart, bookEnd));
     						return info;
     					}
@@ -96,44 +96,43 @@ public class Function {
 		
 	}
 	/**
-	 * @param request
+	 * this function creates hotels and rooms
+	 * @param request 
 	 */
 	static void createHotel(String[] request) {
-		for (Map.Entry<String, Hotels> hotel: Hotels.all.entrySet()){ 						// for each currently known/registered hotel and check 
-			//System.out.println("Searching for hotel");			//whether hotel already exists
+		for (Map.Entry<String, Hotels> hotel: Hotels.all.entrySet()){// for each currently known/registered hotel and check 
+																	//whether hotel already exists
 			if (hotel.getKey().equals(request[1])){ 				//if it does exist add room
-				//System.out.println("Hotel exists");
 				for (String room : hotel.getValue().roomList.keySet()) {
 					if (room.equals(request[2])){
-					//	System.out.println("room already exists maybe?");
-						return ;//MIGHT BE WRONG YOU MIGHT WANNA CHANGE
+						return ;
 					}
 				}
-				//System.out.println("added new room to hotel: "+ request[1]);
 				allocRoom(hotel.getValue(), request);
 				return;
-			}													//if it doesn't create a new one and add room
-			//System.out.println("Didn't find hotel");
+			}													//if it doesn't create a new hotel and add room
 		}
-		//System.out.println("adding new hotel: "+ request[1]);
 		Hotels newHotel = new Hotels(request[1]);
 		allocRoom(newHotel, request);
 		Hotels.all.put(request[1],newHotel);
 		return;
 	}
-	
+	/**
+	 * this function removes bookings given a booking name
+	 * @param request
+	 */
 	public static void removeBooking(String[] request){
 		
 		BookingInfo currB = HotelBookingSystem.bookings.get(request[1]);
 		if (currB == null){
 			return;
 		}
-		Hotels currH = Hotels.all.get(currB.hotel);
+		Hotels currH = Hotels.all.get(currB.getHotel());
 		for(String room : currB.rooms){
 			Room change = currH.roomList.get(room);
 			ListIterator<Booking> iter = change.Bookings.listIterator();
 			while(iter.hasNext()){
-				if(iter.next().name.equals(request[1])){
+				if(iter.next().getName().equals(request[1])){
 					iter.remove();
 					
 				}
@@ -142,7 +141,7 @@ public class Function {
 		HotelBookingSystem.bookings.remove(request[1]);
 	}
 	
-	/**
+	/**this function prints out all the rooms of a hotel and all related bookings
 	 * @param request
 	 */
 	public static void print(String[] request) {
@@ -150,23 +149,23 @@ public class Function {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd");
 		for(Room Rooms: hotelBookings.roomList.values()){
 		   if (Rooms.Bookings.size()>0){
-			   System.out.printf(request[1]+ " " +Rooms.number);
+			   System.out.printf(request[1]+ " " +Rooms.getNumber());
 			   Collections.sort(Rooms.Bookings);
 			   for(Booking info : Rooms.Bookings){
 			
-				   LocalDate dateS = info.bookS;
-				   LocalDate dateE = info.bookE;
+				   LocalDate dateS = info.getBookS();
+				   LocalDate dateE = info.getBookE();
 				   System.out.printf(" "+ dateS.format(formatter));
 				   System.out.printf(" "+dateE.compareTo(dateS));
 			   }
 			   System.out.println("");
 		   }else{
-			   System.out.println(request[1]+ " " +Rooms.number);
+			   System.out.println(request[1]+ " " +Rooms.getNumber());
 		   }
 		}
 	}
 	
-	static void process(Scanner sc) {
+	static void parser(Scanner sc) {
 		Input convert = new Input();
 		while(sc.hasNextLine()){
       	  String[] request = null;//

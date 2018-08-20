@@ -30,12 +30,12 @@ public class Input {
 				System.out.println("Booking rejected");
 				return;
 			}
-			System.out.printf("Booking %s %s",test.name, test.hotel);
+			System.out.printf("Booking %s %s",test.getName(), test.getHotel());
 			for (String number : test.rooms){
 				System.out.printf(" %s", number);
 			}
 			System.out.println("");
-			HotelBookingSystem.bookings.put(test.name, test);
+			HotelBookingSystem.bookings.put(test.getName(), test);
 			
 		} else if (request[0].equals("Hotel")){				//0=command 1=Hotel 2=roomNumb 3=capacity
 			Function.createHotel(request);
@@ -50,12 +50,12 @@ public class Input {
 				System.out.println("Booking rejected");
 				return;
 			}
-			System.out.printf("Change %s %s",attempt.name, attempt.hotel);
+			System.out.printf("Change %s %s",attempt.getName(), attempt.getHotel());
 			for (String number : attempt.rooms){
 				System.out.printf(" %s", number);
 			}
 			System.out.println("");
-			HotelBookingSystem.bookings.put(attempt.name, attempt);
+			HotelBookingSystem.bookings.put(attempt.getName(), attempt);
 			
 				
 			 
