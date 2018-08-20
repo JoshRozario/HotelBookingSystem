@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Hotels {
 	public static Map<String,Hotels> all = new LinkedHashMap<String, Hotels>();
+    //public static Map<String,Booking> = new LinkedHashMap<String,Booking>()
 	
 	Map<String,Room> roomList = new LinkedHashMap<String,Room>();
     String name;

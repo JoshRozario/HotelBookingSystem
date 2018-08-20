@@ -1,11 +1,9 @@
 package ass1;
 
-
-
 public class Input {
 	/**
 	 * this function splits user input by white space and returns an array
-	 * @param input 
+	 * @param input user input 
 	 * @return String[] this returns the user input split into an array
 	 */
 	
@@ -14,6 +12,14 @@ public class Input {
 		return parts;
 		
 	}
+	/**
+	 * This function takes in user input that has been split into
+	 * parts and applies the appropriate functions/methods to either
+	 * "register" Hotels, make bookings, change/cancel bookings, or
+	 * print hotel booking details
+	 * @param request user input that has been split
+	 * 
+	 */
 
 	static void command(String[] request){	//below are index numbers and respective meaning for each command
 		
@@ -24,27 +30,42 @@ public class Input {
 				System.out.println("Booking rejected");
 				return;
 			}
-			System.out.printf("Booking %s %s ",test.name, test.hotel);
+			System.out.printf("Booking %s %s",test.name, test.hotel);
 			for (String number : test.rooms){
-				System.out.printf("%s ", number);
+				System.out.printf(" %s", number);
 			}
 			System.out.println("");
+			HotelBookingSystem.bookings.put(test.name, test);
 			
 		} else if (request[0].equals("Hotel")){				//0=command 1=Hotel 2=roomNumb 3=capacity
 			Function.createHotel(request);
-			return;
+			
 			
 			
 		}else if (request[0].equals("Change")){				//0=command 1=bookingName 2-4=date 5-6=room booking 
-						
-			//enter code		
+			Function.removeBooking(request);
+			
+			BookingInfo attempt = Function.book(request);
+			if (attempt.rooms.isEmpty()){
+				System.out.println("Booking rejected");
+				return;
+			}
+			System.out.printf("Change %s %s",attempt.name, attempt.hotel);
+			for (String number : attempt.rooms){
+				System.out.printf(" %s", number);
+			}
+			System.out.println("");
+			HotelBookingSystem.bookings.put(attempt.name, attempt);
+			
 				
 			 
 		}else if (request[0].equals("Cancel")){//0=command 1=bookingName
-			//Enter code
+			Function.removeBooking(request);
+			System.out.println("Cancel " + request[1]);
 			
 		}else if (request[0].equals("Print")){//0=command 1=Hotel
-			//Enter code
+			Function.print(request);
+			
 		}else{
 			//Enter code
 		}
@@ -52,6 +73,7 @@ public class Input {
 		
 		
 	}
+	
 
 
 }
