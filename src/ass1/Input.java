@@ -48,8 +48,7 @@ public class Input {
 					for (Room room : hotel.roomList) {
 						if (room.number.equals(request[2])){
 							System.out.println("room already exists maybe?");
-							return ;//MIGHT BE WRONG YOU MIGHT WANNA CHANGE
-						}
+							return ;
 					}
 					System.out.println("added new room to hotel: "+ request[1]);
 					hotel.roomList.add(new Room(request[2],(Integer.parseInt(request[3]))));
